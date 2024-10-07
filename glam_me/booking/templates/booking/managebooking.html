@@ -1,0 +1,40 @@
+{% extends 'temp/admin_base.html' %}
+{% block base %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<center>
+		<h2>Manage Booking</h2>
+		<table border="1" class="table table-striped">
+			<tr style="color: white">
+				<th>Booking ID</th>
+				<th>Service ID</th>
+				<th>User ID</th>
+				<th>Date</th>
+				<th>Time</th>
+				<th>Status</th>
+				
+			</tr>
+            {% for i in i %}
+			<tr style="color: white">
+				<td>{{ i.booking_id}}</td>
+				<td>{{ i.service_id}}</td>
+				<td>{{ i.user.username }}</td>
+				<td>{{ i.date }}</td>
+				<td>{{ i.time }}</td>
+				<td>{{ i.status }}</td>
+				
+					<td><a href="booking/approved/{{ i.booking_id}}" class="btn btn-primary">Approve</a>
+					</td><td><a href="booking/rejected/{{ i.booking_id }}" class="btn btn-danger">Reject</a></td>
+				</tr>
+            {% endfor %}
+			</table>
+
+	</center>
+
+</body>
+</html>
+{% endblock %}

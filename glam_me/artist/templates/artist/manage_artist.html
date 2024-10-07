@@ -1,0 +1,42 @@
+{% extends 'temp/admin_base.html' %}
+{% block base %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<center>
+	<h2>Manage Artist</h2>
+	<table border="1" class="table table-striped table-bordered">
+		<tr style="color: white">
+			<th>ID</th>
+			<th>Artist Name</th>
+			<th>Qualification</th>
+			<th>Phone</th>
+			<th>Email</th>
+			<th>Image</th>
+			<th>Portfolio Image</th>
+			<th>Status</th>
+			
+		</tr>
+        {% for i in h %}
+		<tr style="color: white">
+			<td>{{ i.artist_id }}</td>
+			<td>{{ i.artistname }}</td>
+			<td>{{ i.qualification }}</td>
+			<td>{{ i.phone }}</td>
+			<td>{{ i.e_mail }}</td>
+			<td>{{ i.image }}</td>
+			<td>{{ i.portfolio_image }}</td>
+			<td>{{ i.status }}</td>
+			<td><a href="/artist/approve/{{ i.artist_id }}" class="btn btn-primary">Approve</a></td>
+			<td><a href="/artist/reject/{{ i.artist_id }}" class="btn btn-danger">Reject</a></td>
+			
+		</tr>
+        {% endfor %}
+	</table>
+</center>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'temp/admin_base.html' %}
+{% block base %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<center>
+<form method="post">
+	<table>
+		
+			<h1>Artist</h1>
+			<tr>
+				<td>Artistname</td>
+				<td><input type="text" name="aname"></td>
+			</tr>
+			<tr>
+				<td>Qualification</td>
+				<td><input type="text" name="qual">
+				</td></tr>
+				<tr>
+			<td>E-mail</td>
+			<td><input type="E-mail" name="ae-mail">
+			</td></tr>
+			<tr>
+				<td>image</td>
+				<td><input type="file" name="img">
+				</td></tr>
+				<tr>
+					<td>Portfolio</td>
+					<td><input type="file" name="pimg">
+					</td></tr>
+					<tr>
+						<td>mobile</td>
+						<td><input type="text" name="mb">
+						</td></tr>
+						<tr>
+							<td>Password</td>
+							<td><input type="password" name="psw">
+							</td></tr>
+							<tr><td></td>
+								<td><input type="Submit" name="Register">
+</td></tr>			</tr>
+		
+	</table>
+</form></center>
+</body>
+</html>
+{% endblock %}

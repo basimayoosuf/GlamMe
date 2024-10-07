@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+ <center>
+ 	<h1>Payment</h1>
+ 	<form mathod="post">
+ 		<table>
+    <tr><td>Booking ID</td>
+    	<td><input type="number" name="bid"></td>
+    </tr>
+
+    	<tr>
+    		<td>Amount</td>
+    		<td><input type="number" name="amt">
+    		</td>
+    	</tr>
+
+    	<tr>
+    		<td>Payment Method</td>
+    		<td><select name="method"> 
+                <option value="UPI">UPI
+                    <option value="Wallet/Postpaid">Wallet/Postpaid
+                        <option value="Debit/Credit/ATM Card">Debit/Credit/ATM Card
+
+
+            </select>
+    		</td>
+         </tr>
+
+    	<tr><td>CVV</td>
+    		<td><input type="text" name="cvv"></td>
+    	</tr>
+               <td>Card Holder Name</td><td><input type="text" name="chname"></td>
+    	</tr>
+
+    	
+    		<tr><td></td><td><input type="submit" value="Pay"></td></tr>
+    	</table>
+    </form>
+ </center>
+
+</body>
+</html>

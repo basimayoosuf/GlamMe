@@ -1,0 +1,43 @@
+{% extends 'temp/admin_base.html' %}
+{% block base %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<center>
+		<h2>Manage Payment</h2>
+		<table border="1" class="table table-striped">
+			<tr style="color: white">
+				<th>Payment ID</th>
+				<th>Amount</th>
+				<th>Booking ID</th>
+				<th>Method</th>
+				<th>Cvv</th>
+				<th>Cardholder Name</th>
+                <th>Status</th>
+			</tr>
+            {% for i in j %}
+			<tr style="color: white">
+				<td>{{ i.payment_id}}</td>
+				<td>{{ i.amount }}</td>
+                <td>{{ i.booking.user.username }}</td>
+				<td>{{ i.method }}</td>
+				<td>{{ i.cvv }}</td>
+				<td>{{ i.cardholder_name }}</td>
+                <td>{{ i.status }}</td>
+                <td><a href="payment/paid{{ i.payment_id }}" class="btn btn-primary">Paid</a>
+                <td><a href="payment/pending{{ i.payment_id}}" class="btn btn-danger">Pending</a>
+
+            </tr>
+            {% endfor %}
+			</table>
+
+	</center>
+
+
+</body>
+</html>
+{% endblock %}

@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:glam_me/layout/botnavartist.dart';
+import 'package:glam_me/layout/draw_artist.dart';
+import 'package:glam_me/layout/login.dart';
 import 'dart:convert';
 import 'package:http/http.dart';
 
 
-class view_comment extends StatefulWidget {
-  const view_comment({Key? key}) : super(key: key);
+class view_replyartist extends StatefulWidget {
+  const view_replyartist({Key? key}) : super(key: key);
   @override
-  State<view_comment> createState() => _view_commentState();
+  State<view_replyartist> createState() => _view_replyartistState();
 }
-class _view_commentState extends State<view_comment> {
+class _view_replyartistState extends State<view_replyartist> {
   late List data;
   void List_function() async {
-    var url = Uri.parse("");
-    Response resp1 = await get(url);
+    var url = Uri.parse(login.url+"artist_complaint/%20reply_vw/");
+    Response resp1 = await post(url,body: {'uid':login.uid});
     // data = jsonDecode(resp1.body);
     this.setState(() {
       data = jsonDecode(resp1.body);
@@ -23,10 +26,13 @@ class _view_commentState extends State<view_comment> {
   Widget build(BuildContext context) {
      List_function();
     return Scaffold(
+      drawer: draw_artist(),
+      bottomNavigationBar: botnav_artist(),
       // drawer: drawuser(),
       appBar: AppBar(
        backgroundColor: Colors.pink,
-        title: Text("View reply",style: new TextStyle(fontSize: 30,fontWeight: FontWeight.bold),),
+        title: Text("View reply",style: new TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color: Colors.white),),
+        iconTheme: IconThemeData(color: Colors.white),
       ),
        body: Container(
           decoration: BoxDecoration(
@@ -68,19 +74,9 @@ class _view_commentState extends State<view_comment> {
                               ),
                               new SizedBox(height: 6.0),
 
-                              new Text(('Booking : ' ).toUpperCase()+" "+data[index]['booking'].toString(), style: Theme
-                                  .of(context)
-                                  .textTheme
-                                  .titleMedium
-                              ),
-                              new SizedBox(height: 6.0),
+                              
 
-                              new Text(('Artist : ' ).toUpperCase()+" "+data[index]['artist'].toString(), style: Theme
-                                  .of(context)
-                                  .textTheme
-                                  .titleMedium
-                              ),
-                              new SizedBox(height: 6.0),
+                        
 
                               new Text(('Reply : ' ).toUpperCase()+" "+data[index]['reply'].toString(), style: Theme
                                   .of(context)
@@ -89,12 +85,7 @@ class _view_commentState extends State<view_comment> {
                               ),
                               new SizedBox(height: 6.0),
 
-                              new Text(('Date : ' ).toUpperCase()+" "+data[index]['date'].toString(), style: Theme
-                                  .of(context)
-                                  .textTheme
-                                  .titleMedium
-                              ),
-                              new SizedBox(height: 6.0),
+                             
                             ],
                           ),
                         )

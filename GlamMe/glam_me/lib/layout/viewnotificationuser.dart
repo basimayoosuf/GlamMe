@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:glam_me/layout/botnavuser.dart';
+import 'package:glam_me/layout/draw_user.dart';
+import 'package:glam_me/layout/login.dart';
 import 'dart:convert';
 import 'package:http/http.dart';
 
 
-class view_comment extends StatefulWidget {
-  const view_comment({Key? key}) : super(key: key);
+class view_notificationuser extends StatefulWidget {
+  const view_notificationuser({Key? key}) : super(key: key);
   @override
-  State<view_comment> createState() => _view_commentState();
+  State<view_notificationuser> createState() => _view_notificationuserState();
 }
-class _view_commentState extends State<view_comment> {
-  late List data;
+class _view_notificationuserState extends State<view_notificationuser> {
+ 
+
+     List data=[];
   void List_function() async {
-    var url = Uri.parse("");
-    Response resp1 = await get(url);
+    var url = Uri.parse(login.url+"notification/%20user/");
+    Response resp1 = await post(url,body: {'uid':login.uid});
     // data = jsonDecode(resp1.body);
     this.setState(() {
       data = jsonDecode(resp1.body);
@@ -21,12 +26,15 @@ class _view_commentState extends State<view_comment> {
   }
   @override
   Widget build(BuildContext context) {
-     List_function();
+    List_function();
     return Scaffold(
+      drawer: draw_user(),
+      bottomNavigationBar: botnav_user(),
       // drawer: drawuser(),
       appBar: AppBar(
        backgroundColor: Colors.pink,
-        title: Text("Notifications",style: new TextStyle(fontSize: 30,fontWeight: FontWeight.bold),),
+        title: Text("Notifications",style: new TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color: Colors.white),),
+        iconTheme: IconThemeData(color: Colors.white),
       ),
        body: Container(
           decoration: BoxDecoration(
@@ -61,6 +69,12 @@ class _view_commentState extends State<view_comment> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               // Image.network(mainpage.url+"static/"+data[index]['pmr'].toString()),
+                              // new Text("Username : "+" "+data[index]['uname'].toString(), style: Theme
+                              //     .of(context)
+                              //     .textTheme
+                              //     .titleMedium,
+                              // ),
+                              // new SizedBox(height: 6.0),
                               new Text("Notification : "+" "+data[index]['notification'].toString(), style: Theme
                                   .of(context)
                                   .textTheme

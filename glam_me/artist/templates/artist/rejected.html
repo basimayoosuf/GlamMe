@@ -1,0 +1,76 @@
+{% extends 'temp/admin_base.html' %}
+{% block base %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Manage Artist</title>
+	<!-- Add Bootstrap CSS -->
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<center>
+
+	<h2>Manage Artist</h2>
+
+	<!-- Dropdown for All, Approved, Rejected, Pending -->
+	<div class="dropdown">
+		<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			Filter Artists
+		</button>
+		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+			<a href="/artist/manageartist/" class="dropdown-item">All</a>
+			<a href="/artist/approved/" class="dropdown-item">Approved</a>
+			<a href="/artist/rejected/" class="dropdown-item">Rejected</a>
+			<a href="/artist/pending/" class="dropdown-item">Pending</a>
+		</div>
+	</div>
+
+	<table border="1" class="table table-striped table-bordered">
+		<tr style="color: white">
+			<th>ID</th>
+			<th>Artist Name</th>
+			<th>Qualification</th>
+			<th>Phone</th>
+			<th>Email</th>
+			<th>Image</th>
+			<th>Portfolio Image</th>
+
+			<!-- Span "Status" across three columns -->
+			<th colspan="3" class="text-center">Status</th>
+		</tr>
+        {% for i in h %}
+		<tr style="color: white">
+			<td>{{ i.artist_id }}</td>
+			<td>{{ i.artistname }}</td>
+			<td>{{ i.qualification }}</td>
+			<td>{{ i.phone }}</td>
+			<td>{{ i.e_mail }}</td>
+			<td>{{ i.image }}</td>
+			<td>{{ i.portfolio_image }}</td>
+
+			<!-- Three buttons under the "Status" column -->
+			<td>
+				<a href="/artist/approve/{{ i.artist_id }}"
+                   {% if i.status == 'Approved' %}
+                            class="btn btn-danger"
+                   {% else %}
+                        class="btn btn-primary"
+                   {% endif %}
+                    >
+                Approve</a>
+            </td>
+			<td><a href="/artist/reject/{{ i.artist_id }}" class="btn btn-danger">Reject</a></td>
+			<td>{{ i.status }}</td>
+		</tr>
+        {% endfor %}
+	</table>
+</center>
+
+<!-- Add Bootstrap JS, jQuery, and Popper.js -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+{% endblock %}

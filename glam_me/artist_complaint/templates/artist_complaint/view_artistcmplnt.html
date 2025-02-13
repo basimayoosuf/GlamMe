@@ -7,13 +7,13 @@
 </head>
 <body>
 <center>
-	<h2>View Artist Complaint</h2>
+	<h2 style="font-family: 'Lucida Fax';color: whitesmoke;padding: 15px">Artist Complaint</h2>
 	<table border="1" class="table table-striped table-bordered">
 		<tr style="color: white">
 			<th>Artist Complaint ID</th>
 			<th>Complaint</th>
-			<th>Booking ID</th>
-			<th>Artist ID</th>
+			<th>User</th>
+			<th>Artist</th>
 			<th>Date</th>
 			<th>reply</th>
 		</tr>
@@ -25,7 +25,7 @@
 			<td>{{ i.artist.artistname}}</td>
 			<td>{{ i.date }}</td>
 			<td>{{ i.reply }}</td>
-			<td><a href="/artist_complaint/artistcmpltreply/{{ i.artist_comp_id }}">reply</a></td>
+			<td style="font-weight: bold"><a href="/artist_complaint/artistcmpltreply/{{ i.artist_comp_id }}">reply</a></td>
 		</tr>
         {% endfor %}
 	</table>

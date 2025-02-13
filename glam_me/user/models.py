@@ -7,11 +7,14 @@ class User(models.Model):
     password = models.CharField(max_length=45)
     address = models.CharField(max_length=45)
     email = models.CharField(max_length=45)
-    phone = models.IntegerField()
+    phone = models.CharField(max_length=20)
     location = models.IntegerField()
 
     class Meta:
         managed = False
         db_table = 'user'
+
+    def __str__(self):
+        return self.username
 
 

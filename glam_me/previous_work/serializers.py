@@ -3,6 +3,7 @@ from previous_work.models import PreviousWork
 
 
 class android_serialiser(serializers.ModelSerializer):
+    artname = serializers.CharField(source='artist.artistname')
     class Meta:
         model = PreviousWork
-        fields = '__all__'
+        fields = ['previous_work_id','image','artname']

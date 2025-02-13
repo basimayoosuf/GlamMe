@@ -1,32 +1,50 @@
 import 'package:flutter/material.dart';
+import 'package:glam_me/layout/botnavartist.dart';
+import 'package:glam_me/layout/draw_artist.dart';
+import 'package:glam_me/layout/login.dart';
 import 'dart:convert';
 import 'package:http/http.dart';
 
 
-class view_comment extends StatefulWidget {
-  const view_comment({Key? key}) : super(key: key);
+class view_notificationartist extends StatefulWidget {
+  const view_notificationartist({Key? key}) : super(key: key);
   @override
-  State<view_comment> createState() => _view_commentState();
+  State<view_notificationartist> createState() => _view_notificationartistState();
 }
-class _view_commentState extends State<view_comment> {
-  late List data;
+class _view_notificationartistState extends State<view_notificationartist> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    List_function();
+    super.initState();
+  }
+
+  List data=[];
+
+  
   void List_function() async {
-    var url = Uri.parse("");
-    Response resp1 = await get(url);
+    var url = Uri.parse(login.url+"notification/%20artist/");
+    Response resp1 = await post(url,body: {
+      'uid':login.uid
+    });
     // data = jsonDecode(resp1.body);
-    this.setState(() {
+    setState(() {
       data = jsonDecode(resp1.body);
     });
     print(resp1.body);
   }
   @override
   Widget build(BuildContext context) {
-     List_function();
+  List_function();
     return Scaffold(
+      drawer: draw_artist(),
+      bottomNavigationBar: botnav_artist(),
       // drawer: drawuser(),
       appBar: AppBar(
        backgroundColor: Colors.pink,
-        title: Text("Notifications",style: new TextStyle(fontSize: 30,fontWeight: FontWeight.bold),),
+        title: Text("Notifications",style: new TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color: Colors.white),),
+        iconTheme: IconThemeData(color: Colors.white),
       ),
        body: Container(
           decoration: BoxDecoration(
@@ -61,6 +79,12 @@ class _view_commentState extends State<view_comment> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               // Image.network(mainpage.url+"static/"+data[index]['pmr'].toString()),
+                              //  Text("Username : "+" "+data[index]['aname'].toString(), style: Theme
+                              //     .of(context)
+                              //     .textTheme
+                              //     .titleMedium,
+                              // ),
+                              // new SizedBox(height: 6.0),
                               new Text("Notification : "+" "+data[index]['notification'].toString(), style: Theme
                                   .of(context)
                                   .textTheme

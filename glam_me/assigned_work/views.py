@@ -2,22 +2,20 @@ from django.shortcuts import render
 from assigned_work.models import AssignedWork
 from assigned_work.models import AssignedWork
 from artist.models import Artist
+import datetime
 from service.models import Service
-def assignedwork(request):
+from django.http import HttpResponse
+def assignedwork(request,idd):
     ob = Artist.objects.all()
-    obb =Service.objects.all()
     context = {
         'a': ob,
-        'b': obb
     }
     if request.method == 'POST':
         obj = AssignedWork()
-        obj.date = request.POST.get('date')
-        obj.time = request.POST.get('time')
-        obj.booking_id = 1
-        obj.service_id = 1
+        obj.date = request.POST.get('bdate')
+        obj.time = request.POST.get('btime')
+        obj.booking_id = request.POST.get('book')
         obj.artist_id = request.POST.get('an')
-        obj.service_id = request.POST.get('service')
         obj.status = 'pending'
         obj.save()
     return render(request, 'assigned_work/assignedwork.html', context)
@@ -37,7 +35,45 @@ from assigned_work.serializers import android_serialiser
 
 
 class view_assigned_work(APIView):
-    def get(self,request):
-        obj=AssignedWork.objects.all()
+    def post(self,request):
+        uid=request.data['uid']
+        statuses = ['accepted', 'pending', 'completed']
+        # obj=AssignedWork.objects.filter(status='accepted',artist_id=uid)
+        obj = AssignedWork.objects.filter(status__in=statuses, artist_id=uid)
         assw=android_serialiser(obj,many=True)
         return Response(assw.data)
+
+class update(APIView):
+    def post(self,request):
+        obj=AssignedWork.objects.all()
+        uid=request.data['uid']
+        assw=android_serialiser(obj,many=True)
+        return Response(assw.data)
+
+class accept(APIView):
+    def post(self,request):
+        obj=AssignedWork.objects.get(assigned_id=request.data['aid'])
+        obj.status='Accepted'
+        obj.save()
+        return HttpResponse('yes')
+
+class reject(APIView):
+    def post(self,request):
+        obj=AssignedWork.objects.get(assigned_id=request.data['aid'])
+        obj.status='Rejected'
+        obj.save()
+        return HttpResponse('yes')
+
+class completed(APIView):
+    def post(self, request):
+        obj = AssignedWork.objects.get(assigned_id=request.data['aid'])
+        obj.status = 'Completed'
+        obj.save()
+        return HttpResponse('yes')
+
+class notcompleted(APIView):
+    def post(self, request):
+        obj = AssignedWork.objects.get(assigned_id=request.data['aid'])
+        obj.status = 'pending'
+        obj.save()
+        return HttpResponse('yes')

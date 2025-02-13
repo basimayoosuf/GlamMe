@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:glam_me/layout/botnavartist.dart';
+import 'package:glam_me/layout/draw_artist.dart';
+import 'package:glam_me/layout/login.dart';
 import 'dart:convert';
 import 'package:http/http.dart';
 
 
-class view_comment extends StatefulWidget {
-  const view_comment({Key? key}) : super(key: key);
+class view_paymentart extends StatefulWidget {
+  const view_paymentart({Key? key}) : super(key: key);
   @override
-  State<view_comment> createState() => _view_commentState();
+  State<view_paymentart> createState() => _view_paymentartState();
 }
-class _view_commentState extends State<view_comment> {
+class _view_paymentartState extends State<view_paymentart> {
   late List data;
   void List_function() async {
-    var url = Uri.parse("");
-    Response resp1 = await get(url);
+    var url = Uri.parse(login.url+"payment/%20view/");
+    Response resp1 = await post(url,body: {
+      'uid':login.uid
+    });
     // data = jsonDecode(resp1.body);
     this.setState(() {
       data = jsonDecode(resp1.body);
@@ -23,10 +28,13 @@ class _view_commentState extends State<view_comment> {
   Widget build(BuildContext context) {
      List_function();
     return Scaffold(
+      drawer: draw_artist(),
+      bottomNavigationBar: botnav_artist(),
       // drawer: drawuser(),
       appBar: AppBar(
        backgroundColor: Colors.pink,
-        title: Text("Payment",style: new TextStyle(fontSize: 30,fontWeight: FontWeight.bold),),
+        title: Text("Payment",style: new TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color: Colors.white),),
+        iconTheme: IconThemeData(color: Colors.white),
       ),
        body: Container(
           decoration: BoxDecoration(
@@ -61,7 +69,7 @@ class _view_commentState extends State<view_comment> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               // Image.network(mainpage.url+"static/"+data[index]['pmr'].toString()),
-                              new Text("Booking : "+" "+data[index]['booking'].toString(), style: Theme
+                              new Text("Booking : "+" "+data[index]['bid'].toString(), style: Theme
                                   .of(context)
                                   .textTheme
                                   .titleMedium,
@@ -81,19 +89,19 @@ class _view_commentState extends State<view_comment> {
                                   .titleMedium
                               ),
                               new SizedBox(height: 6.0),
-                              new Text("Cvv : "+" "+data[index]['cvv'].toString(), style: Theme
-                                  .of(context)
-                                  .textTheme
-                                  .titleMedium,
-                              ),
-                              new SizedBox(height: 6.0),
+                              // new Text("Cvv : "+" "+data[index]['cvv'].toString(), style: Theme
+                              //     .of(context)
+                              //     .textTheme
+                              //     .titleMedium,
+                              // ),
+                              // new SizedBox(height: 6.0),
 
-                              new Text(('Card holder name : ' ).toUpperCase()+" "+data[index]['cardholder_name'].toString(), style: Theme
-                                  .of(context)
-                                  .textTheme
-                                  .titleMedium
-                              ),
-                              new SizedBox(height: 6.0),
+                              // new Text(('Card holder name : ' ).toUpperCase()+" "+data[index]['cardholder_name'].toString(), style: Theme
+                              //     .of(context)
+                              //     .textTheme
+                              //     .titleMedium
+                              // ),
+                              // new SizedBox(height: 6.0),
 
                             ],
                           ),

@@ -5,6 +5,6 @@ urlpatterns = [
     url('postreply/(?P<idd>\w+)',views.postreply),
     url('viewcomplaint/',views.viewcomplaint),
     url('complaint/',views.complaint.as_view()),
-    url('view_complaint/',views.view_complaint.as_view())
+    url('view_reply/',views.vw_reply.as_view())
 
 ]

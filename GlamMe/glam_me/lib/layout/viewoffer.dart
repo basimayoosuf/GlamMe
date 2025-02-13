@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:glam_me/layout/botnavuser.dart';
+import 'package:glam_me/layout/draw_user.dart';
+import 'package:glam_me/layout/login.dart';
+import 'package:glam_me/layout/viewartist.dart';
 import 'dart:convert';
 import 'package:http/http.dart';
+import 'package:glam_me/layout/bookservices.dart';
 
 
-class view_comment extends StatefulWidget {
-  const view_comment({Key? key}) : super(key: key);
+class view_offer extends StatefulWidget {
+  const view_offer({Key? key}) : super(key: key);
   @override
-  State<view_comment> createState() => _view_commentState();
+  State<view_offer> createState() => _view_offerState();
 }
-class _view_commentState extends State<view_comment> {
+class _view_offerState extends State<view_offer> {
   late List data;
   void List_function() async {
-    var url = Uri.parse("");
+    var url = Uri.parse(login.url+"offer/%20view/");
     Response resp1 = await get(url);
     // data = jsonDecode(resp1.body);
     this.setState(() {
@@ -23,10 +28,13 @@ class _view_commentState extends State<view_comment> {
   Widget build(BuildContext context) {
      List_function();
     return Scaffold(
+      drawer: draw_user(),
+      bottomNavigationBar: botnav_user(),
       // drawer: drawuser(),
       appBar: AppBar(
        backgroundColor: Colors.pink,
-        title: Text("Offers",style: new TextStyle(fontSize: 30,fontWeight: FontWeight.bold),),
+        title: Text("Offers",style: new TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color: Colors.white),),
+        iconTheme: IconThemeData(color: Colors.white),
       ),
        body: Container(
           decoration: BoxDecoration(
@@ -81,6 +89,32 @@ class _view_commentState extends State<view_comment> {
                                   .titleMedium
                               ),
                               new SizedBox(height: 6.0),
+                              new Text("Artist Name : "+" "+data[index]['artname'].toString(), style: Theme
+                                  .of(context)
+                                  .textTheme
+                                  .titleMedium,
+                              ),
+                              new SizedBox(height: 6.0),
+
+
+
+                                Container(
+                                padding: EdgeInsets.fromLTRB(90, 0, 90, 0),
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    bookservices.sid= data[index]['booking_id'].toString();
+                                    bookservices.amount=data[index]['offer'].toString();
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (BuildContext context) =>
+                                                bookservices()));
+                                  },
+                                  child: Text("Book Now"),
+                                ),
+                              ),
+
+
+
                             ],
                           ),
                         )

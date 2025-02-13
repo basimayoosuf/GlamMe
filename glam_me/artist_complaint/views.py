@@ -14,7 +14,7 @@ def artistcmpltreply(request, idd):
     return render(request, 'artist_complaint/artistcmpltreply.html')
 
 def view_artistcmplnt(request):
-    obj = ArtistComplaint.objects.all()
+    obj = ArtistComplaint.objects.all().order_by('-artist_comp_id')
     context = {
         'g': obj
     }
@@ -34,16 +34,16 @@ class artist_complaint(APIView):
         obj.complaint=request.data['complaint']
         obj.booking_id=1
         obj.reply='pending'
-        obj.artist_id=1
+        obj.artist_id=request.data['uid']
         obj.date=datetime.datetime.today()
-
         obj.save()
         return HttpResponse('yes')
 
 
-class view_artistcomplaint(APIView):
-    def get(self,request):
-        obj=ArtistComplaint.objects.all()
+class view_reply(APIView):
+    def post(self,request):
+        uid=request.data['uid']
+        obj=ArtistComplaint.objects.filter(artist_id=uid)
         artcom=android_serialiser(obj,many=True)
         return Response(artcom.data)
 

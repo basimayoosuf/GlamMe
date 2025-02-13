@@ -7,20 +7,20 @@
 </head>
 <body>
 	<center>
-		<h2>View Rating</h2>
+		<h2 style="font-family: 'Lucida Fax';color: whitesmoke;padding: 15px">View Rating</h2>
 		<table border="1" class="table table-striped table-bordered">
 			<tr style="color: white">
 				<th>Rating ID</th>
 				<th>Rating</th>
-				<th>Booking ID</th>
-				<th>User ID</th>
+				<th>Booking</th>
+				<th>User</th>
 				
 			</tr>
             {% for i in e %}
 			<tr style="color: white">
 				<td>{{ i.rating_id}}</td>
 				<td>{{ i.rating }}</td>
-				<td>{{ i.booking.service.artist.artistname}}</td>
+				<td>{{ i.booking.booking_id}}</td>
 				<td>{{ i.user.username}}</td>
 				</tr>
             {% endfor %}

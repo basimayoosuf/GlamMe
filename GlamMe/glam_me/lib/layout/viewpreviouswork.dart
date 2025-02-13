@@ -1,18 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:glam_me/layout/botnavuser.dart';
+import 'package:glam_me/layout/draw_user.dart';
+import 'package:glam_me/layout/login.dart';
 import 'dart:convert';
 import 'package:http/http.dart';
 
 
-class view_comment extends StatefulWidget {
-  const view_comment({Key? key}) : super(key: key);
+class view_previouswork extends StatefulWidget {
+  const view_previouswork({Key? key}) : super(key: key);
+  static var artid='';
   @override
-  State<view_comment> createState() => _view_commentState();
+  State<view_previouswork> createState() => _view_previousworkState();
 }
-class _view_commentState extends State<view_comment> {
+class _view_previousworkState extends State<view_previouswork> {
   late List data;
   void List_function() async {
-    var url = Uri.parse("");
-    Response resp1 = await get(url);
+    var url = Uri.parse(login.url+"previous_work/view/");
+    Response resp1 = await post(url,body: {'aid':view_previouswork.artid});
     // data = jsonDecode(resp1.body);
     this.setState(() {
       data = jsonDecode(resp1.body);
@@ -23,10 +27,13 @@ class _view_commentState extends State<view_comment> {
   Widget build(BuildContext context) {
      List_function();
     return Scaffold(
+      drawer: draw_user(),
+      bottomNavigationBar: botnav_user(),
       // drawer: drawuser(),
       appBar: AppBar(
        backgroundColor: Colors.pink,
-        title: Text("Previous work",style: new TextStyle(fontSize: 30,fontWeight: FontWeight.bold),),
+        title: Text("Previous work",style: new TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color: Colors.white),),
+        iconTheme: IconThemeData(color: Colors.white),
       ),
        body: Container(
           decoration: BoxDecoration(
@@ -61,7 +68,7 @@ class _view_commentState extends State<view_comment> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               // Image.network(mainpage.url+"static/"+data[index]['pmr'].toString()),
-                              new Text("Artist : "+" "+data[index]['artist'].toString(), style: Theme
+                              new Text("Artist : "+" "+data[index]['artname'].toString(), style: Theme
                                   .of(context)
                                   .textTheme
                                   .titleMedium,

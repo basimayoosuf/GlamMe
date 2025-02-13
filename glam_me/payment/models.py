@@ -10,6 +10,8 @@ class Payment(models.Model):
     cvv = models.CharField(max_length=10)
     cardholder_name = models.CharField(max_length=45)
     status = models.CharField(max_length=45)
+    artistamount = models.FloatField()
+
 
     class Meta:
         managed = False

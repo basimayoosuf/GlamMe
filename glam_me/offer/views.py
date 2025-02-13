@@ -18,7 +18,8 @@ from offer.serializers import android_serialiser
 class offer(APIView):
     def post(self, request):
         obj = Offer()
-        obj.service_id=1
+        obj.service=request.data['ser']
+        obj.artist_id=request.data['aid']
         obj.offer=request.data['offer']
         obj.offerdate=request.data['offerdate']
         obj.save()

@@ -5,41 +5,49 @@
 <head>
 	<title></title>
 </head>
-<body>
+<body style="background-color: #db4360">
  <center>
- 	<h1>Assign Work</h1>
+ <br>
+     <br>
+     <br>
+     <br>
+     <br>
+     <br>
+     <br>
+
+ 	<h2 style="color: white;font-family: 'Lucida Fax'">Assign Work</h2>
  	<form method="post">
         {% csrf_token %}
  		<table>
             <tr>
-                <td style="color: white">Artist name</td>
+                <td style="color: white"></td>
                 <td><select name="an" class="form-control" required="">
-                    <option>--select--</option>
+                    <option>--select artist--</option>
                     {% for i in a %}
                     <option value="{{ i.artist_id }}">{{ i.artistname }}</option>
                     {% endfor %}
                 </select></td>
             </tr>
-        <tr>
-            <td style="color: white">Service</td>
-            <td><select name="service" class="form-control" required="">
-                <option>--select--</option>
-                {% for i in b %}
-                <option value="{{ i.service_id }}">{{ i.service }}</option>
-                {% endfor %}
-            </select></td>
-        </tr>
-    <tr style="color: white"><td>Date</td>
-    	<td><input type="Date" name="date" class="form-control" required=""></td>
-    </tr>
+{#        <tr>#}
+{#            <td>date</td>#}
+{#            <td><input type="date" name="da"></td>#}
+{#        </tr>#}
+{#        <tr>#}
+{#            <td>Time</td>#}
+{#            <td><input type="time" name="ti"></td>#}
+{#        </tr>#}
 
-    	
-
-    	<tr style="color: white">
-    		<td>Time</td>
-    		<td><input type="Time" name="time" class="form-control" required="">
-    		</td>
-         </tr>
+{#    <tr style="color: white"><td>Date</td>#}
+{#    	<td><input type="Date" name="date" class="form-control" required=""></td>#}
+{#    </tr>#}
+{##}
+{#    	#}
+{##}
+{#    	<tr style="color: white">#}
+{#    		<td>Time</td>#}
+{#    		<td><input type="Time" name="time" class="form-control" required="">#}
+{#    		</td>#}
+{#         </tr>#}
 
     	
     		<tr style="color: white"><td></td><td><input type="submit" value="Post" class="btn btn-primary"></td></tr>

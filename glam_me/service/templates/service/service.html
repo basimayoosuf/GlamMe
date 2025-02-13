@@ -1,24 +1,37 @@
+{% extends 'temp/admin_base.html' %}
+{% block base %}
 <!DOCTYPE html>
 <html>
 <head>
 	<title></title>
 </head>
-<body>
+<body style="background-color: #db4360" >
 <center>
-	<h1>Service</h1>
+    <br>
+        <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+	<h2 style="color: whitesmoke">Add Service</h2>
 	<form method="post">
+        {% csrf_token %}
 	<table>
 	
 	
 <tr>
-	<td>Service</td>
-	<td><input type="text" name="service"></td>
+{#	<td style="color: whitesmoke">Service</td>#}
+	<td><input type="text" name="ser" class="form-control" required="" placeholder="Service"></td>
 </tr>
 <tr>
-	<td></td>
-	<td><input type="Submit" name="Submit"></td>
+
+	<td><input type="Submit" name="Submit" value="Submit" class="btn btn-primary"></td>
 </tr>
 	</table>
 </center>
 </body>
 </html>
+{% endblock %}

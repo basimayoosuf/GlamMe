@@ -8,12 +8,14 @@
 </head>
 <body>
 <center>
-		<h2>Manage Payment</h2>
-		<table border="1" class="table table-striped">
+		<h2 style="font-family: 'Lucida Fax';color: whitesmoke;padding: 15px">Manage Payment</h2>
+		<table border="1" class="table table-striped table-bordered">
 			<tr style="color: white">
 				<th>Payment ID</th>
+                <th>Artist name</th>
 				<th>Amount</th>
-				<th>Booking ID</th>
+                <th>Artist Amount</th>
+				<th>Username</th>
 				<th>Method</th>
 				<th>Cvv</th>
 				<th>Cardholder Name</th>
@@ -22,14 +24,16 @@
             {% for i in j %}
 			<tr style="color: white">
 				<td>{{ i.payment_id}}</td>
+                <td>{{ i.booking.artistservice.artist.artistname }}</td>
 				<td>{{ i.amount }}</td>
+                <td> {{ i.artistamount }}</td>
                 <td>{{ i.booking.user.username }}</td>
 				<td>{{ i.method }}</td>
 				<td>{{ i.cvv }}</td>
 				<td>{{ i.cardholder_name }}</td>
                 <td>{{ i.status }}</td>
-                <td><a href="payment/paid{{ i.payment_id }}" class="btn btn-primary">Paid</a>
-                <td><a href="payment/pending{{ i.payment_id}}" class="btn btn-danger">Pending</a>
+                <td><a href="/payment/paid/{{ i.payment_id }}" class="btn btn-primary">Pay</a>
+                <td><a href="/payment/pending/{{ i.payment_id}}" class="btn btn-danger">Pending</a>
 
             </tr>
             {% endfor %}

@@ -3,6 +3,8 @@ from offer.models import Offer
 
 
 class android_serialiser(serializers.ModelSerializer):
+    artname=serializers.CharField(source='artist.artistname')
+
     class Meta:
         model = Offer
-        fields = '__all__'
+        fields = ['offer_id','service','offer','offerdate','artname']

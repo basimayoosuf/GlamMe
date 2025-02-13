@@ -7,17 +7,15 @@
 </head>
 <body>
 <center>
-	<h2>View Services </h2>
+	<h2 style="font-family: 'Lucida Fax';color: whitesmoke;padding: 15px">Services</h2>
 	<table border="1" class="table table-striped table-bordered">
         <tr style="color: white">
             <th>Service ID</th>
-            <th>Artist ID</th>
             <th>Services</th>
         </tr>
         {%  for i in b %}
         <tr style="color: white">
         <td>{{ i.service_id}}</td>
-        <td>{{ i.artist.artistname }}</td>
         <td>{{ i.service }}</td>
         </tr>
         {% endfor %}

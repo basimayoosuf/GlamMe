@@ -7,6 +7,7 @@ class Login(models.Model):
     password = models.CharField(max_length=45)
     u_id = models.IntegerField()
     type = models.CharField(max_length=45)
+    status = models.CharField(max_length=45)
 
     class Meta:
         managed = False

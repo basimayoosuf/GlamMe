@@ -47,11 +47,76 @@
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                         </button>
-                        <div class="collapse navbar-collapse" id="navbarsExample04">
+                         <div class="collapse navbar-collapse" id="navbarsExample04">
                            <ul class="navbar-nav mr-auto">
                               <li class="nav-item active">
-                                 <a class="nav-link" href="/temp/admin/"> Back  </a>
+                                 <a class="nav-link" href="/temp/home"> Home  </a>
                               </li>
+
+
+
+                         <li class="nav-item dropdown">
+                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    View
+                                 </a>
+                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/user/view_user/">User</a>
+                                    <a class="dropdown-item" href="/service/viewservice/">Services</a>
+                                    <a class="dropdown-item" href="/booking/view_booking/">Booking</a>
+                                    <a class="dropdown-item" href="/complaint/viewcomplaint/">User Complaint</a>
+                                    <a class="dropdown-item" href="/artist_complaint/view_artcmplnt/">Artist Complaint</a>
+                                    <a class="dropdown-item" href="/assigned_work/view_wrkstatus/">Work Status</a>
+                                    <a class="dropdown-item" href="/rating/viewrating/">Rating</a>
+                                    <div class="dropdown-divider"></div>
+
+                                 </div>
+                              </li>
+                              <li class="nav-item dropdown">
+                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Manage
+                                 </a>
+                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/artist/manageartist/">Artist</a>
+                                    <a class="dropdown-item" href="/booking/managebooking/">Booking</a>
+                                    <a class="dropdown-item" href="/payment/managepayment/">Payment</a>
+
+                                    <div class="dropdown-divider"></div>
+
+                                 </div>
+                              </li>
+                              <li class="nav-item dropdown">
+                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Post
+                                 </a>
+                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+ <a class="dropdown-item" href="/notification/notification/">Notification Artist</a>
+                                     <a class="dropdown-item" href="/notification/notificationuser/">Notification User</a>
+
+                                     <a class="dropdown-item" href="/booking/ass_vw/">Assign Booking</a>
+                                      <a class="dropdown-item" href="/service/add/">Add Service</a>
+
+                                    <div class="dropdown-divider"></div>
+
+                                 </div>
+                              </li>
+                            <li class="nav-item">
+                                 <a class="nav-link" href="/temp/home/">Logout</a>
+                              </li>
+
+                           </ul>
+                        </div>
+                     </nav>
+                  </div>
+
+
+
+
+{#                        <div class="collapse navbar-collapse" id="navbarsExample04">#}
+{#                           <ul class="navbar-nav mr-auto">#}
+{#                              <li class="nav-item active">#}
+{#                                 <a class="nav-link" href="/temp/admin/"> Back  </a>#}
+{#                              </li>#}
 
                               <!-- <li class="nav-item">
                                  <a class="nav-link" href="#register">Register</a>
@@ -320,19 +385,22 @@
       <!-- service -->
       <!-- about -->
 
-      <div id="about"  class="about">
-         <div class="container">
-            <div class="row">
+{#      <div id="about"  class="about">#}
+      <div style="background-color: #db4360;padding: 20px;justify-content: center;align-content: center">
+{#         <div class="container">#}
+{#            <div class="row">#}
                <div class="col-md-9">
                   <div class="titlepage">
 {#                     <h2> <img src="/static/images/head.h.png.jpg" > </h2>#}
+                  <br>
+                  <br>
 {% block base %}
       {% endblock %}
                   </div>
                </div>
             </div>
-         </div>
-      </div>
+{#         </div>#}
+{#      </div>#}
       <!-- end about -->
       <!-- customer -->
       <!-- <div id="customer" class="customer">
